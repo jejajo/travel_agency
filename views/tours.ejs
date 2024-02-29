@@ -1,0 +1,81 @@
+<!-- tours.ejs -->
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <!-- Head content goes here -->
+</head>
+
+<body>
+    <div class="navbar navbar-inverse navbar-fixed-top">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="#">Matayev SE-2208</a>
+            </div>
+            <div class="navbar-collapse collapse">
+                <ul class="nav navbar-nav navbar-right">
+                    <li><a href="/">HOME</a></li>
+                    <li><a href="/destination">DESTINATIONS</a></li>
+                    <li><a href="/weather">WEATHER</a></li>
+                    <li><a href="/tours">TOURS</a></li>
+                    <li><a href="/contact">CONTACT</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <section id="tours-sec">
+        <div class="container">
+            <h2>Tours</h2>
+
+            <!-- Display tours from the database -->
+            <ul>
+                <% tours.forEach(tour=> { %>
+                    <li>
+                        <span>
+                            <%= tour.country %>
+                        </span>
+                        <span>
+                            <%= tour.description %>
+                        </span>
+                        <span>
+                            <%= tour.cost %>₸
+                        </span>
+                        <form action="/tours/delete/<%= tour._id %>" method="post">
+                            <button type="submit">Delete</button>
+                        </form>
+                    </li>
+                    <% }); %>
+            </ul>
+
+            <!-- Form to add a new tour -->
+            <form action="/tours/add" method="post">
+                <label for="country">Country:</label>
+                <input type="text" name="country" required>
+
+                <label for="description">Description:</label>
+                <input type="text" name="description" required>
+
+                <label for="cost">Cost (₸):</label>
+                <input type="number" name="cost" required>
+
+                <button type="submit">Add Tour</button>
+            </form>
+        </div>
+    </section>
+
+    <!-- Footer content goes here -->
+
+    <script src="assets/plugins/jquery-1.10.2.js"></script>
+    <script src="assets/plugins/bootstrap.min.js"></script>
+    <script src="assets/plugins/jquery.isotope.min.js"></script>
+    <script src="assets/plugins/jquery.prettyPhoto.js"></script>
+    <script src="assets/js/custom.js"></script>
+</body>
+
+</html>
